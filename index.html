@@ -1,167 +1,405 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nikolozi Erkomaishvili | ECE Portfolio</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nikolozi Erkomaishvili — ECE Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue-deep:   #0A1930;
+    --blue-panel:  #0F2340;
+    --blue-line:   #2C4A6E;
+    --blue-line-2: #1B3453;
+    --cyan:        #6FE3D6;
+    --cyan-dim:    #3E8C82;
+    --brass:       #D9A441;
+    --paper:       #E9EEF3;
+    --paper-dim:   #A9BBCF;
+    --mono: 'IBM Plex Mono', ui-monospace, monospace;
+    --sans: 'IBM Plex Sans', system-ui, sans-serif;
+  }
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            background: #f5f5f5;
-            color: #222;
-        }
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
 
-        header {
-            background: #0d1b2a;
-            color: white;
-            text-align: center;
-            padding: 40px;
-        }
+  body{
+    margin:0;
+    background:
+      linear-gradient(var(--blue-line-2) 1px, transparent 1px) 0 0/40px 40px,
+      linear-gradient(90deg, var(--blue-line-2) 1px, transparent 1px) 0 0/40px 40px,
+      var(--blue-deep);
+    background-attachment: fixed;
+    color: var(--paper);
+    font-family: var(--sans);
+    line-height: 1.6;
+  }
 
-        section {
-            max-width: 850px;
-            margin: 30px auto;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-        }
+  a{ color: var(--cyan); }
+  a:focus-visible, button:focus-visible{
+    outline: 2px solid var(--cyan);
+    outline-offset: 3px;
+  }
 
-        h2 {
-            border-bottom: 2px solid #eee;
-            padding-bottom: 5px;
-        }
+  .wrap{
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 48px 24px 96px;
+  }
 
-        .item {
-            margin-bottom: 15px;
-        }
+  /* ---- Title block (signature element) ---- */
+  .titleblock{
+    border: 1px solid var(--blue-line);
+    background: rgba(15, 35, 64, 0.75);
+    backdrop-filter: blur(2px);
+  }
+  .titleblock-top{
+    padding: 28px 28px 22px;
+    border-bottom: 1px solid var(--blue-line);
+  }
+  .eyebrow{
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    color: var(--cyan);
+    text-transform: uppercase;
+    margin: 0 0 10px;
+  }
+  h1{
+    font-family: var(--mono);
+    font-weight: 700;
+    font-size: clamp(28px, 5vw, 42px);
+    margin: 0 0 8px;
+    letter-spacing: -0.01em;
+    color: var(--paper);
+  }
+  .role{
+    font-family: var(--sans);
+    color: var(--paper-dim);
+    font-size: 16px;
+    margin: 0;
+  }
+  .titleblock-grid{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    font-family: var(--mono);
+    font-size: 12px;
+  }
+  .tb-cell{
+    padding: 12px 16px;
+    border-right: 1px solid var(--blue-line);
+    border-top: 1px solid var(--blue-line);
+  }
+  .tb-cell:last-child{ border-right: none; }
+  .tb-label{
+    display:block;
+    color: var(--cyan-dim);
+    letter-spacing: 0.1em;
+    font-size: 10px;
+    margin-bottom: 4px;
+  }
+  .tb-value a{ color: var(--paper); text-decoration: none; }
+  .tb-value a:hover{ color: var(--cyan); text-decoration: underline; }
 
-        .title {
-            font-weight: bold;
-        }
+  @media (max-width: 640px){
+    .titleblock-grid{ grid-template-columns: repeat(2, 1fr); }
+  }
 
-        .small {
-            color: #555;
-            font-size: 14px;
-        }
+  /* ---- Sections ---- */
+  section{ margin-top: 52px; }
+  .sec-head{
+    display:flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+  .sec-num{
+    font-family: var(--mono);
+    color: var(--cyan-dim);
+    font-size: 13px;
+  }
+  h2{
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin: 0;
+    flex-shrink: 0;
+  }
+  .sec-rule{
+    flex: 1;
+    height: 1px;
+    background: repeating-linear-gradient(90deg, var(--blue-line) 0 6px, transparent 6px 10px);
+  }
 
-        ul {
-            margin: 5px 0 10px 20px;
-        }
+  p.lede{
+    color: var(--paper);
+    max-width: 62ch;
+    font-size: 15.5px;
+  }
 
-        a {
-            color: #0d1b2a;
-        }
-    </style>
+  .entry{
+    padding: 18px 0;
+    border-top: 1px solid var(--blue-line-2);
+  }
+  .entry:first-of-type{ border-top: none; padding-top: 0; }
+
+  .entry-head{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 4px 16px;
+  }
+  .entry-title{
+    font-weight: 600;
+    color: var(--paper);
+    font-size: 15.5px;
+  }
+  .entry-org{ color: var(--paper-dim); font-weight: 400; }
+  .entry-date{
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--cyan-dim);
+    white-space: nowrap;
+  }
+  .entry ul{
+    margin: 10px 0 0;
+    padding-left: 18px;
+    color: var(--paper-dim);
+    font-size: 14.5px;
+  }
+  .entry li{ margin-bottom: 4px; }
+  .entry li::marker{ color: var(--cyan-dim); }
+
+  /* ---- Skills as component tags ---- */
+  .skill-groups{ display: grid; gap: 14px; }
+  .skill-row{
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 12px;
+    align-items: start;
+    font-size: 14px;
+  }
+  .skill-row-label{
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--cyan-dim);
+    text-transform: uppercase;
+    padding-top: 6px;
+  }
+  .tags{ display:flex; flex-wrap: wrap; gap: 8px; }
+  .tag{
+    font-family: var(--mono);
+    font-size: 12.5px;
+    padding: 5px 10px;
+    border: 1px solid var(--blue-line);
+    color: var(--paper);
+    background: rgba(111, 227, 214, 0.05);
+  }
+  @media (max-width: 640px){
+    .skill-row{ grid-template-columns: 1fr; }
+    .skill-row-label{ padding-top: 0; }
+  }
+
+  /* certifications */
+  .cert-list{ list-style: none; margin:0; padding:0; }
+  .cert-list li{
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 8px 16px;
+    padding: 10px 0;
+    border-top: 1px solid var(--blue-line-2);
+    font-size: 14.5px;
+    color: var(--paper);
+  }
+  .cert-list li:first-child{ border-top: none; }
+  .cert-org{ color: var(--paper-dim); font-size: 13px; display:block; }
+  .cert-date{
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--cyan-dim);
+    white-space: nowrap;
+    align-self: start;
+  }
+
+  .quote-block{
+    border-left: 2px solid var(--brass);
+    padding: 4px 0 4px 18px;
+    color: var(--paper-dim);
+    font-size: 14.5px;
+  }
+  .quote-block .entry-title{ color: var(--brass); }
+
+  footer{
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 1px solid var(--blue-line);
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--cyan-dim);
+    display:flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior: auto; }
+  }
+</style>
 </head>
-
 <body>
+<div class="wrap">
 
-<header>
-    <h1>Nikolozi Erkomaishvili</h1>
-    <p>Electrical & Computer Engineering Student | Robotics | Embedded Systems</p>
-</header>
-
-<section>
-    <h2>About</h2>
-    <p>
-        Electrical and Computer Engineering student interested in robotics,
-        embedded systems, and hardware-software integration. Experienced in
-        Arduino-based robotics, Python, and C++ with a strong interest in
-        engineering design and applied problem solving.
-    </p>
-</section>
-
-<section>
-    <h2>Education</h2>
-    <div class="item">
-        <div class="title">Temple University</div>
-        <div class="small">B.S. Electrical and Computer Engineering</div>
-        <div class="small">Expected Graduation: 2029</div>
-        <ul>
-            <li>Calculus I</li>
-            <li>Physics I</li>
-            <li>Engineering Fundamentals</li>
-        </ul>
+  <!-- TITLE BLOCK -->
+  <div class="titleblock">
+    <div class="titleblock-top">
+      <p class="eyebrow">Drawing No. NE-001 &nbsp;·&nbsp; Personal Portfolio</p>
+      <h1>Nikolozi Erkomaishvili</h1>
+      <p class="role">Electrical &amp; Computer Engineering Student — Robotics · Embedded Systems · Programming</p>
     </div>
-</section>
+    <div class="titleblock-grid">
+      <div class="tb-cell">
+        <span class="tb-label">LOCATION</span>
+        <span class="tb-value">Philadelphia, PA</span>
+      </div>
+      <div class="tb-cell">
+        <span class="tb-label">EMAIL</span>
+        <span class="tb-value"><a href="mailto:nikolozi.erkomaishvili123@gmail.com">nikolozi.erkomaishvili123@gmail.com</a></span>
+      </div>
+      <div class="tb-cell">
+        <span class="tb-label">LINKEDIN</span>
+        <span class="tb-value"><a href="https://www.linkedin.com/in/nikolozi-erkomaishvili-90418a258/" target="_blank" rel="noopener">/in/nikolozi-erkomaishvili</a></span>
+      </div>
+      <div class="tb-cell">
+        <span class="tb-label">GITHUB</span>
+        <span class="tb-value"><a href="#" target="_blank" rel="noopener">nikola.erko</a></span>
+      </div>
+    </div>
+  </div>
 
-<section>
-    <h2>Technical Skills</h2>
-    <ul>
-        <li>C++</li>
-        <li>Python</li>
-        <li>Arduino / Embedded Systems</li>
-        <li>Robotics</li>
-        <li>Data Science (basic)</li>
-        <li>Git / GitHub</li>
+  <!-- ABOUT -->
+  <section>
+    <div class="sec-head"><span class="sec-num">01</span><h2>About</h2><div class="sec-rule"></div></div>
+    <p class="lede">Electrical/Computer Engineering-track student with hands-on experience assembling and testing robotic systems, a working foundation in embedded electronics (Arduino), programming in C++ and Python, and cybersecurity fundamentals. Comfortable moving between hardware and software, with a strong record of teamwork, leadership, and cross-cultural communication across Georgian, English, and Russian.</p>
+  </section>
+
+  <!-- EDUCATION -->
+  <section>
+    <div class="sec-head"><span class="sec-num">02</span><h2>Education</h2><div class="sec-rule"></div></div>
+
+    <div class="entry">
+      <div class="entry-head">
+        <span class="entry-title">Temple University <span class="entry-org">— International Student Advisory Board (ISAB), Member</span></span>
+        <span class="entry-date">09/2025 – Present</span>
+      </div>
+      <ul>
+        <li>Represent the international student body; organize campus events and meet bi-weekly to develop new student initiatives.</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="entry-head">
+        <span class="entry-title">General Education Diploma <span class="entry-org">— Public School #35, Tbilisi, Georgia</span></span>
+        <span class="entry-date">2025</span>
+      </div>
+      <ul>
+        <li>Final grade 4.0 · SAT 1430 · IELTS 7.5</li>
+        <li>Class President; Captain, Handball Club; Member, Self-Governing Student Committee</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section>
+    <div class="sec-head"><span class="sec-num">03</span><h2>Technical Skills</h2><div class="sec-rule"></div></div>
+    <div class="skill-groups">
+      <div class="skill-row">
+        <span class="skill-row-label">Programming</span>
+        <div class="tags"><span class="tag">C++</span><span class="tag">Python</span><span class="tag">Data Science</span><span class="tag">Machine Learning</span><span class="tag">Web Development</span></div>
+      </div>
+      <div class="skill-row">
+        <span class="skill-row-label">Hardware</span>
+        <div class="tags"><span class="tag">Arduino</span><span class="tag">Electronics</span><span class="tag">Robotics Assembly</span></div>
+      </div>
+      <div class="skill-row">
+        <span class="skill-row-label">Security</span>
+        <div class="tags"><span class="tag">Cybersecurity Fundamentals</span><span class="tag">Network Threat Research</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENGINEERING EXPERIENCE -->
+  <section>
+    <div class="sec-head"><span class="sec-num">04</span><h2>Engineering Experience</h2><div class="sec-rule"></div></div>
+
+    <div class="entry">
+      <div class="entry-head">
+        <span class="entry-title">Robotics Intern <span class="entry-org">— FabLab Iliauni, Tbilisi, Georgia</span></span>
+        <span class="entry-date">10/2024 – 01/2025</span>
+      </div>
+      <ul>
+        <li>Assisted and monitored the mechanical and electronic assembly of robots.</li>
+        <li>Researched and prototyped new design concepts for robotics development.</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="entry-head">
+        <span class="entry-title">Robotics Volunteer, multiple events <span class="entry-org">— FabLab Iliauni, Tbilisi, Georgia</span></span>
+        <span class="entry-date">03/2024 – 09/2024</span>
+      </div>
+      <ul>
+        <li>Supported robot maintenance, logistics, and stand monitoring at public exhibitions.</li>
+        <li>Explained robot schematics and functionality to attendees and guided hands-on demonstrations.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- TRAINING -->
+  <section>
+    <div class="sec-head"><span class="sec-num">05</span><h2>Technical Training</h2><div class="sec-rule"></div></div>
+    <ul class="cert-list">
+      <li><span>Electronics Online Course<span class="cert-org">FabLab Iliauni</span></span><span class="cert-date">11/2023 – 12/2023</span></li>
+      <li><span>Robotics Online Course<span class="cert-org">FabLab Iliauni</span></span><span class="cert-date">11/2023 – 12/2023</span></li>
+      <li><span>Programming Language Course, Python<span class="cert-org">Information Technologies Center MZIURI</span></span><span class="cert-date">07/2021 – 06/2022</span></li>
+      <li><span>Data Bootcamp Tbilisi<span class="cert-org">ClevertoneGeo</span></span><span class="cert-date">11/2023</span></li>
+      <li><span>Cyber Security, Cisco Academy for Children<span class="cert-org">Caucasus Cyber Security Center</span></span><span class="cert-date">11/2022 – 12/2022</span></li>
+      <li><span>Technology Law, AI &amp; Electronic Contracts<span class="cert-org">Tbilisi Learning Center</span></span><span class="cert-date">04/2024</span></li>
     </ul>
-</section>
+  </section>
 
-<section>
-    <h2>Engineering Experience</h2>
-
-    <div class="item">
-        <div class="title">FabLab Iliauni – Robotics Intern</div>
-        <div class="small">Tbilisi, Georgia | 2024</div>
-        <ul>
-            <li>Assisted in assembly and testing of robotic systems.</li>
-            <li>Worked with Arduino-based systems and electronics.</li>
-            <li>Supported prototype development and debugging.</li>
-        </ul>
+  <!-- PUBLICATION -->
+  <section>
+    <div class="sec-head"><span class="sec-num">06</span><h2>Publication</h2><div class="sec-rule"></div></div>
+    <div class="quote-block">
+      <div class="entry-title">"Modern Threats of Corporate Networks" (2022)</div>
+      <p style="margin: 6px 0 0;">Co-authored with G. Totladze, N. Tomashvili, V. Mamporia, and D. Nioradze. Reviewed contemporary cyberattack techniques and their financial impact on organizations.</p>
     </div>
+  </section>
 
-    <div class="item">
-        <div class="title">FabLab Iliauni – Volunteer (Robotics)</div>
-        <ul>
-            <li>Supported robotics workshops and demonstrations.</li>
-            <li>Assisted participants with hardware and logistics.</li>
-        </ul>
+  <!-- HONORS -->
+  <section>
+    <div class="sec-head"><span class="sec-num">07</span><h2>Honors &amp; Languages</h2><div class="sec-rule"></div></div>
+    <div class="entry">
+      <ul>
+        <li>Winner, International Day of Tolerance Essay Contest — Children University of TSU (2023)</li>
+        <li>Gold Level, U.S. Embassy Summer Reading Challenge (2021)</li>
+        <li>Languages: Georgian (native) · English — C1/C2 · Russian — C2</li>
+      </ul>
     </div>
-</section>
+  </section>
 
-<section>
-    <h2>Leadership & Activities</h2>
+  <footer>
+    <span>© 2026 Nikolozi Erkomaishvili</span>
+    <span>Built with plain HTML/CSS — hosted on GitHub Pages</span>
+  </footer>
 
-    <div class="item">
-        <div class="title">Temple University – ISAB Member</div>
-        <ul>
-            <li>Participate in student advisory discussions and events.</li>
-        </ul>
-    </div>
-
-    <div class="item">
-        <div class="title">Engineers Without Borders (EWB)</div>
-        <ul>
-            <li>Supported engineering outreach and water purification education.</li>
-        </ul>
-    </div>
-
-    <div class="item">
-        <div class="title">IEEE / Robotics Club</div>
-        <ul>
-            <li>Member participating in engineering workshops and projects.</li>
-        </ul>
-    </div>
-</section>
-
-<section>
-    <h2>Publication</h2>
-    <div class="item">
-        <div class="title">Modern Threats of Corporate Networks (2022)</div>
-        <ul>
-            <li>Research on cybersecurity threats and attack methods in modern networks.</li>
-        </ul>
-    </div>
-</section>
-
-<section>
-    <h2>Contact</h2>
-    <p>Email: your.email@example.com</p>
-    <p>GitHub: https://github.com/yourusername</p>
-    <p>LinkedIn: your LinkedIn URL</p>
-</section>
-
+</div>
 </body>
 </html>
